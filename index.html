@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d1b"><meta name="description" content="NEXUS AI interactive tool-calling and structured output demo.">
+  <title>NEXUS AI — Personal AI Toolkit</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="NEXUS AI home"><span class="brand-mark">✳</span><span>NEXUS<span class="brand-ai">.AI</span><small>PERSONAL TOOLKIT</small></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <button class="nav-item active" id="navChat"><span>◈</span> Assistant <kbd>01</kbd></button>
+    <button class="nav-item" id="navTools"><span>⌘</span> Tool registry <kbd>02</kbd></button>
+    <button class="nav-item" id="navOutput"><span>{ }</span> Structured output <kbd>03</kbd></button>
+    <div class="sidebar-bottom"><div class="status-dot"></div><div><strong>Demo environment</strong><small>Local tools available</small></div><span class="live-pill">LIVE</span></div>
+    <div class="side-footer">BUILT TO THINK IN STRUCTURES<br><span>v1.0.0 · EDUCATIONAL DEMO</span></div>
+  </aside>
+  <main class="main-content">
+    <header class="topbar"><div class="crumb">Workspace <span>/</span> <strong id="crumbTitle">Assistant</strong></div><div class="top-right"><span class="secure"><span>●</span> Runs in your browser</span><div class="avatar">N</div></div></header>
+    <section class="hero"><div class="eyebrow"><span class="sparkle">✦</span> YOUR AI, WITH CAPABILITIES</div><h1>Make ideas <span>actionable.</span></h1><p class="hero-copy">A hands-on demonstration of tool calling and structured outputs.<br class="desktop-break"> Ask for a calculation or build a task plan and watch the tools work.</p>
+      <div class="hero-stats"><div><span class="stat-icon">⌘</span><span><strong>03</strong><small>AVAILABLE TOOLS</small></span></div><i></i><div><span class="stat-icon">{ }</span><span><strong>JSON</strong><small>STRUCTURED RESULTS</small></span></div><i></i><div><span class="stat-icon">↯</span><span><strong>Instant</strong><small>LOCAL EXECUTION</small></span></div></div>
+    </section>
+    <div class="workspace-grid">
+      <section class="panel assistant-panel" id="assistantSection">
+        <div class="panel-head"><div><div class="panel-kicker">NEXUS CONSOLE</div><h2>Assistant <span class="online-badge"><b></b> Ready</span></h2></div><button class="icon-btn" id="clearBtn" title="Clear conversation" aria-label="Clear conversation">↻</button></div>
+        <div class="chat-area" id="chatArea" aria-live="polite">
+          <div class="welcome-card"><div class="bot-orb">✳</div><div><strong>What can I help you do?</strong><p>I can route your request to a tool, run it, and return a predictable structured result.</p></div></div>
+          <div class="section-label">TRY A PROMPT <span>↘</span></div>
+          <div class="prompt-grid"><button class="prompt-card" data-prompt="Calculate (128 * 7) + 45"><span class="prompt-icon violet">∑</span><span><strong>Run a calculation</strong><small>Calculate (128 × 7) + 45</small></span><b>↗</b></button><button class="prompt-card" data-prompt="Make a task plan for finishing my science project in 3 days"><span class="prompt-icon pink">☷</span><span><strong>Build a task plan</strong><small>Break a project into steps</small></span><b>↗</b></button><button class="prompt-card" data-prompt="Summarize: Tool calling lets an AI choose a function, provide arguments, and use the result to answer a request."><span class="prompt-icon blue">✧</span><span><strong>Summarize text</strong><small>Get a concise summary</small></span><b>↗</b></button></div>
+        </div>
+        <form class="composer" id="promptForm"><div class="input-wrap"><span>✧</span><input id="promptInput" autocomplete="off" placeholder="Ask Nexus to do something…" aria-label="Your request"><span class="input-hint">ENTER ↵</span></div><button class="send-btn" type="submit" aria-label="Run request">Run tool <span>↗</span></button></form><div class="composer-note"><span>◇</span> Demo uses local JavaScript functions. No API key required.</div>
+      </section>
+      <aside class="right-column">
+        <section class="panel tool-panel" id="toolsSection"><div class="panel-head compact"><div><div class="panel-kicker">CAPABILITIES</div><h2>Tool registry</h2></div><span class="count-badge">03</span></div>
+          <div class="tool-row"><div class="tool-symbol calc">∑</div><div class="tool-info"><strong>calculator</strong><small>Evaluate arithmetic expressions</small><code>calculator(expression)</code></div><span class="tool-enabled">ON</span></div>
+          <div class="tool-row"><div class="tool-symbol plan">☷</div><div class="tool-info"><strong>task_planner</strong><small>Create a simple step-by-step plan</small><code>task_planner(goal, days)</code></div><span class="tool-enabled">ON</span></div>
+          <div class="tool-row"><div class="tool-symbol sum">✧</div><div class="tool-info"><strong>text_summarizer</strong><small>Condense text into key points</small><code>text_summarizer(text)</code></div><span class="tool-enabled">ON</span></div>
+        </section>
+        <section class="panel output-panel" id="outputSection"><div class="panel-head compact"><div><div class="panel-kicker">LIVE RESPONSE</div><h2>Structured output</h2></div><button class="copy-btn" id="copyBtn" disabled>Copy JSON <span>⧉</span></button></div><div class="json-meta"><span class="json-dot"></span><span id="jsonStatus">Waiting for a request</span><span class="json-type">application/json</span></div><pre class="json-view" id="jsonOutput"><span class="json-muted">// Your tool result will appear here</span>
+<span class="json-brace">{</span>
+  <span class="json-key">"status"</span>: <span class="json-string">"waiting"</span>,
+  <span class="json-key">"tool"</span>: <span class="json-null">null</span>,
+  <span class="json-key">"result"</span>: <span class="json-null">null</span>
+<span class="json-brace">}</span></pre><div class="output-footer"><span>✓ Schema-consistent response</span><span>UTF-8</span></div></section>
+      </aside>
+    </div>
+    <section class="panel activity-panel"><div class="panel-head compact"><div><div class="panel-kicker">OBSERVABILITY</div><h2>Tool execution log</h2></div><span class="activity-count" id="activityCount">0 EVENTS</span></div><div class="activity-table-wrap"><table><thead><tr><th>STATUS</th><th>EVENT</th><th>DETAILS</th><th>TIME</th></tr></thead><tbody id="activityBody"><tr class="empty-row"><td colspan="4"><span>◌</span> No tool calls yet. Run a prompt to see the execution trace.</td></tr></tbody></table></div></section>
+    <footer class="page-footer"><span>✳ NEXUS.AI <span class="footer-muted">· A TOOL-CALLING DEMONSTRATION</span></span><span>Made for learning <b>✦</b></span></footer>
+  </main>
+</div><div class="toast" id="toast" role="status"></div><script src="script.js"></script>
+</body></html>
